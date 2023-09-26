@@ -11,4 +11,4 @@ void* readvocab(void* arg) {
     }
     vocabFile.close();
     return nullptr;
-}
+} 
