@@ -17,7 +17,7 @@ void* countvocabstrings(void* arg) {
         return nullptr;
     }
 
-    unsigned int lineNumber = 0;  
+    unsigned int lineNumber = 0;  // Add a line number counter
 
     while (true) {
         pthread_mutex_lock(&mutex);
@@ -37,9 +37,9 @@ void* countvocabstrings(void* arg) {
                 count++;
             }
         }
-        lineNumber++;  
+        lineNumber++;  // Increment the line number
         if (count >= data->minNumOfVocabStringsContainedForPrinting) {
-            outputFile << lineNumber << "\t" << count << std::endl;  
+            outputFile << lineNumber << "\t" << count << std::endl;  // Output line number and count
         }
     }
     outputFile.close();
