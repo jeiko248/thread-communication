@@ -2,6 +2,8 @@
 #include <set>
 #include <string>
 
+extern std::queue<std::string> lineQueue;
+
 struct SharedData {
     unsigned int numOfProgressMarks;
     unsigned int hashmarkInterval;
