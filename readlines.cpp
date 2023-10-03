@@ -1,15 +1,21 @@
 #include "readlines.h"
 #include "shared.h"
 #include <fstream>
+#include <iostream>
+#include <queue>
 
-void* readlines(void* arg) {
-    SharedData* data = (SharedData*) arg;
+std::queue<std::string> lineQueue;
+
+void* readlines(void* sharedData) {
+    SharedData* data = static_cast<SharedData*>(sharedData);
     std::ifstream testFile(data->fileName[1]);
+    if (!testFile.is_open()) {
+        std::cerr << "Error opening test file." << std::endl;
+        return nullptr;
+    }
     std::string line;
     while (std::getline(testFile, line)) {
-        pthread_mutex_lock(&mutex);
         lineQueue.push(line);
-        pthread_mutex_unlock(&mutex);
     }
     testFile.close();
     return nullptr;
