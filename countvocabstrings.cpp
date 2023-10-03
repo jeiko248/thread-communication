@@ -33,6 +33,7 @@ void* countvocabstrings(void* arg) {
         while (iss >> word) {
             if (data->vocabulary.find(word) != data->vocabulary.end()) {
                 count++;
+                printf("%iCount: \n", count); 
             }
         }
         if (count >= data->minNumOfVocabStringsContainedForPrinting) {
