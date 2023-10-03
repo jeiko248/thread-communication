@@ -6,7 +6,7 @@ CC=g++
 CCFLAGS=-std=c++11 -Wall -g3 -c
 
 # object files
-OBJS = tree.o readvocab.o readlines.o countvocabstrings.o main.o 
+OBJS = readvocab.o readlines.o countvocabstrings.o main.o 
 
 # Program name
 PROGRAM = countvocabstrings
@@ -18,8 +18,8 @@ $(PROGRAM) : $(OBJS)
 main.o : main.cpp
 	$(CC) $(CCFLAGS) main.cpp
 	
-tree.o : tree.h
-	$(CC) $(CCFLAGS) tree.cpp
+# tree.o : tree.h
+# 	$(CC) $(CCFLAGS) tree.cpp
 
 readvocab.o : readvocab.cpp readvocab.h
 	$(CC) $(CCFLAGS) readvocab.cpp
@@ -36,4 +36,3 @@ countvocabstrings.o: countvocabstrings.cpp countvocabstrings.h
 # with ~, we will delete those as well.
 clean :
 	rm -f *.o *~ $(PROGRAM)
-
