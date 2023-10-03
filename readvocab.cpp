@@ -12,7 +12,7 @@ void* readvocab(void* arg) {
     SharedData* data = (SharedData*) arg;
     std::ifstream vocabFile(data->fileName[0]);
     if (!vocabFile.is_open()) {
-        std::cerr << "Error opening vocabulary file." << std::endl;
+        std::cerr << "Display Unable to open <<missing_file.txt>>" << std::endl;
         return nullptr;
     }
 
