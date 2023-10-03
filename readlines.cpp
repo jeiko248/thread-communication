@@ -28,20 +28,20 @@ void* readlines(void* arg) {
         pthread_mutex_unlock(&mutex);
         processedLines++;
 
-        // Update progress bar
-        if (processedLines % data->hashmarkInterval == 0) {
+       // Update progress bar
+        if (data->hashmarkInterval != 0 && processedLines % data->hashmarkInterval == 0) {
             pthread_mutex_lock(&printMutex);
             std::cout << "#";
             std::cout.flush();
             pthread_mutex_unlock(&printMutex);
         }
     }
-    testFile.close();
 
-    // Print newline and total line count after progress bar
+    // Print newline and line count after progress bar
     pthread_mutex_lock(&printMutex);
     std::cout << std::endl << processedLines << std::endl;
     pthread_mutex_unlock(&printMutex);
 
+    inputFile.close();
     return nullptr;
 }
