@@ -17,15 +17,6 @@
 #define DEFAULT_MINNUM_OFVOCABSTRINGS_CONTAINED 0
 #define NUMOFFILES 2
 
-typedef struct {
-    unsigned int numOfProgressMarks;
-    unsigned int hashmarkInterval;
-    unsigned int minNumOfVocabStringsContainedForPrinting;
-    const char *fileName[NUMOFFILES];
-    unsigned long totalNumOfCharsInVocabFile;
-    std::set<std::string> vocabulary;
-} SharedData;
-
 std::queue<std::string> lineQueue;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
