@@ -26,6 +26,7 @@ void* readlines(void* arg) {
         pthread_mutex_lock(&mutex);
         lineQueue.push(line);
         pthread_mutex_unlock(&mutex);
+       
         processedLines++;
 
        // Update progress bar
