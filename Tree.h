@@ -1,9 +1,5 @@
-/*
-  Name: Nathnael Atlaw
-  RedId: 822655984
-  Date: 9/12/2023
-  San Diego State University
-*/
+// JEIKO SANTOS 824389729
+// NATHNAEL ATLAW 822655984
 
 #include <bits/stdc++.h>
 using namespace std;
