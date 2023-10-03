@@ -15,7 +15,7 @@ void* readlines(void* arg) {
     std::ifstream testFile(data->fileName[1]);
     if (!testFile.is_open()) {
         pthread_mutex_lock(&printMutex);
-        std::cerr << "Error opening test file." << std::endl;
+        std::cerr << "Display Unable to open <<missing_file.txt>>" << std::endl;
         pthread_mutex_unlock(&printMutex);
         return nullptr;
     }
