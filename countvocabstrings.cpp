@@ -17,6 +17,8 @@ void* countvocabstrings(void* arg) {
         return nullptr;
     }
 
+    unsigned int lineNumber = 0;  
+
     while (true) {
         pthread_mutex_lock(&mutex);
         if (lineQueue.empty()) {
@@ -33,11 +35,11 @@ void* countvocabstrings(void* arg) {
         while (iss >> word) {
             if (data->vocabulary.find(word) != data->vocabulary.end()) {
                 count++;
-                printf("%iCount: \n", count); 
             }
         }
+        lineNumber++;  
         if (count >= data->minNumOfVocabStringsContainedForPrinting) {
-            outputFile << count << std::endl;
+            outputFile << lineNumber << "\t" << count << std::endl;  
         }
     }
     outputFile.close();
