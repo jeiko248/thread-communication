@@ -21,6 +21,7 @@
 
 std::queue<std::string> lineQueue;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t printMutex = PTHREAD_MUTEX_INITIALIZER;
 
 int main(int argc, char* argv[]) {
     SharedData data;
@@ -59,6 +60,9 @@ int main(int argc, char* argv[]) {
     pthread_join(readvocabThread, nullptr);
     pthread_join(readlinesThread, nullptr);
     pthread_join(countvocabstringsThread, nullptr);
+
+    pthread_mutex_destroy(&mutex);
+    pthread_mutex_destroy(&printMutex);  // Destroy printMutex
 
     return 0;
 }
