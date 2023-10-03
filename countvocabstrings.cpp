@@ -10,17 +10,19 @@
 
 extern std::queue<std::string> lineQueue;
 extern pthread_mutex_t mutex;
+extern pthread_mutex_t printMutex;  // Mutex for safe printing
 
 void* countvocabstrings(void* arg) {
     SharedData* data = (SharedData*) arg;
     std::ofstream outputFile("countNumOfContainedVocab.txt");
     if (!outputFile.is_open()) {
+        pthread_mutex_lock(&printMutex);
         std::cerr << "Error opening output file." << std::endl;
+        pthread_mutex_unlock(&printMutex);
         return nullptr;
     }
 
-    unsigned int lineNumber = 0;  // Add a line number counter
-
+    unsigned int processedLines = 0;
     while (true) {
         pthread_mutex_lock(&mutex);
         if (lineQueue.empty()) {
@@ -39,11 +41,25 @@ void* countvocabstrings(void* arg) {
                 count++;
             }
         }
-        lineNumber++;  // Increment the line number
         if (count >= data->minNumOfVocabStringsContainedForPrinting) {
-            outputFile << lineNumber << "\t" << count << std::endl;  // Output line number and count
+            outputFile << count << std::endl;
+        }
+
+        // Update progress bar
+        processedLines++;
+        if (processedLines % data->hashmarkInterval == 0) {
+            pthread_mutex_lock(&printMutex);
+            std::cout << "#";
+            std::cout.flush();
+            pthread_mutex_unlock(&printMutex);
         }
     }
     outputFile.close();
+
+    // Print newline and total line count after progress bar
+    pthread_mutex_lock(&printMutex);
+    std::cout << std::endl << processedLines << std::endl;
+    pthread_mutex_unlock(&printMutex);
+
     return nullptr;
 }
