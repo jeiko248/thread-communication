@@ -18,7 +18,7 @@ $(PROGRAM) : $(OBJS)
 main.o : main.cpp
 	$(CC) $(CCFLAGS) main.cpp
 	
-tree.o : tree.cpp tree.h
+tree.o : tree.h
 	$(CC) $(CCFLAGS) tree.cpp
 
 readvocab.o : readvocab.cpp readvocab.h
