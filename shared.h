@@ -1,6 +1,7 @@
 #pragma once
 #include <set>
 #include <string>
+#include <queue> 
 
 extern std::queue<std::string> lineQueue;
 
