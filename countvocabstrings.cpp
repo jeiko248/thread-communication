@@ -29,7 +29,7 @@ void* countvocabstrings(void* arg) {
 
         std::istringstream iss(line);
         std::string word;
-        int count = 0;
+        unsigned int count = 0;  
         while (iss >> word) {
             if (data->vocabulary.find(word) != data->vocabulary.end()) {
                 count++;
