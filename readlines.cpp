@@ -37,12 +37,12 @@ void* readlines(void* arg) {
             pthread_mutex_unlock(&printMutex);
         }
     }
-
+    testFile.close();
+    
     // Print newline and line count after progress bar
     pthread_mutex_lock(&printMutex);
     std::cout << std::endl << processedLines << std::endl;
     pthread_mutex_unlock(&printMutex);
 
-    inputFile.close();
     return nullptr;
 }
