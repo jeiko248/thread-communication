@@ -16,7 +16,7 @@ void* readvocab(void* arg) {
 
     unsigned int processedWords = 0;
     std::string word;
-    while (vocabFile >> word) {
+    while (iss >> word) {
         data->vocabulary.insert(word);
         processedWords++;
 
