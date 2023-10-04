@@ -41,17 +41,17 @@ void* countvocabstrings(void* arg) {
                 count++;
             }
         }
-        if (count >= data->minNumOfVocabStringsContainedForPrinting) {
-            outputFile << count << std::endl;
-        }
-
+       
         // Update progress bar
         processedLines++;
-        if (processedLines % data->hashmarkInterval == 0) {
+         if (data->hashmarkInterval != 0 && processedLines % data->hashmarkInterval == 0) {
             pthread_mutex_lock(&printMutex);
             std::cout << "#";
             std::cout.flush();
             pthread_mutex_unlock(&printMutex);
+        }
+         if (count >= data->minNumOfVocabStringsContainedForPrinting) {
+            outputFile << count << std::endl;
         }
     }
     outputFile.close();
